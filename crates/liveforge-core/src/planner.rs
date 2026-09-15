@@ -36,7 +36,7 @@ pub fn plan_conversion(
     let audio_compatible = media
         .audio_codec
         .as_deref()
-        .map_or(true, |codec| codec == "aac");
+        .is_none_or(|codec| codec == "aac");
     let original_requested = options.quality == QualityMode::Original;
     let can_copy = original_requested && video_compatible && audio_compatible;
 
