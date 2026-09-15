@@ -15,5 +15,7 @@ The format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and
 - Basic resource-pair validation.
 - Transactional pair construction with shared immutable metadata and cleanup on failure.
 - Structural identifier and still-image timestamp validation rules.
+- Apple reference writer using ImageIO and AVFoundation for real JPEG/MOV metadata.
+- macOS integration test that generates, writes, and reads back a synthetic Live Photo pair.
 - Architecture, format, quality, and roadmap documentation.
 - Windows, Linux, and macOS continuous integration.
