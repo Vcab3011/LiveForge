@@ -15,6 +15,7 @@ LiveForge is in the **foundation phase**. The repository currently provides a cr
 | Inspect video/container/HDR metadata | Foundation available |
 | Decide copy vs. one-time transcode | Foundation available |
 | Generate a shared Live Photo asset identifier | Foundation available |
+| Transactional, verified pair publication | Foundation available |
 | Basic HEIC/MOV pair checks | Foundation available |
 | Write image asset identifier | Planned |
 | Write QuickTime content identifier | Planned |
@@ -72,6 +73,7 @@ crates/
   liveforge-core/       domain models and conversion planning
   liveforge-media/      ffprobe-backed media inspection
   liveforge-metadata/   Live Photo identifiers and metadata contracts
+  liveforge-pair/       transactional resource-pair orchestration
   liveforge-validator/  layered validation reports
   liveforge-cli/        command-line interface
 docs/                   format, architecture, quality, and roadmap
