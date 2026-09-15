@@ -1,0 +1,23 @@
+[package]
+name = "liveforge-cli"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+repository.workspace = true
+rust-version.workspace = true
+
+[[bin]]
+name = "liveforge"
+path = "src/main.rs"
+
+[dependencies]
+anyhow.workspace = true
+clap.workspace = true
+liveforge-core = { path = "../liveforge-core" }
+liveforge-media = { path = "../liveforge-media" }
+liveforge-validator = { path = "../liveforge-validator" }
+serde.workspace = true
+serde_json.workspace = true
+
+[lints]
+workspace = true
