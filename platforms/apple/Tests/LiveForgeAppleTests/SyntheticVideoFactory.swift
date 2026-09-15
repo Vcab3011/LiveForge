@@ -1,6 +1,7 @@
 @preconcurrency import AVFoundation
 import CoreVideo
 import Foundation
+@testable import LiveForgeApple
 
 enum SyntheticVideoFactory {
     static func makeVideo(at url: URL, frameCount: Int = 90, framesPerSecond: Int32 = 30) async throws {
