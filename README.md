@@ -8,7 +8,7 @@ LiveForge is an open-source toolkit for turning ordinary videos into Apple Live 
 
 ## Project status
 
-LiveForge is in the **foundation phase**. The repository currently provides a cross-platform Rust workspace, an `ffprobe`-based media analyzer, a deterministic conversion planner, metadata contracts, a basic pair validator, and a first-class CLI shell. It does **not yet write production Live Photo metadata or import assets into Apple Photos**.
+LiveForge is in the **foundation phase**. The repository currently provides a cross-platform Rust workspace, an `ffprobe`-based media analyzer, a deterministic conversion planner, metadata contracts, a basic pair validator, and a first-class CLI shell. An Apple reference backend now writes and reads back real JPEG/MOV Live Photo metadata on macOS CI. The cross-platform writer and Apple Photos import are not implemented yet.
 
 | Capability | Status |
 |---|---|
@@ -17,10 +17,12 @@ LiveForge is in the **foundation phase**. The repository currently provides a cr
 | Generate a shared Live Photo asset identifier | Foundation available |
 | Transactional, verified pair publication | Foundation available |
 | Basic HEIC/MOV pair checks | Foundation available |
-| Write image asset identifier | Planned |
-| Write QuickTime content identifier | Planned |
-| Write timed `still-image-time` metadata | Planned |
-| Structural metadata validation | Planned |
+| Apple reference metadata writer | Available on macOS |
+| Write image asset identifier | Apple reference available |
+| Write QuickTime content identifier | Apple reference available |
+| Write timed `still-image-time` metadata | Apple reference available |
+| Structural metadata validation | Apple reference available |
+| Cross-platform metadata writer | Planned |
 | Windows desktop GUI | Planned |
 | iOS Photos importer | Planned |
 
@@ -78,7 +80,18 @@ crates/
   liveforge-cli/        command-line interface
 docs/                   format, architecture, quality, and roadmap
 .github/workflows/      cross-platform checks
+platforms/apple/        AVFoundation/ImageIO reference writer and read-back tests
 ```
+
+## Apple reference backend
+
+On macOS 13 or newer, run the native metadata integration test with:
+
+```bash
+swift test --package-path platforms/apple
+```
+
+The test generates a synthetic H.264 movie, extracts a frame, writes the shared asset identifier to the JPEG and MOV, adds a timed `still-image-time` metadata track, then reads both resources back before publishing the pair. This is the golden reference for the portable Windows/Linux writer; it is not yet proof of import compatibility with every iPhone/iOS version.
 
 ## Contributing
 
