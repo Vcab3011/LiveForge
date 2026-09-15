@@ -59,7 +59,8 @@ enum SyntheticVideoFactory {
         }
 
         input.markAsFinished()
-        try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation {
+            (continuation: CheckedContinuation<Void, Error>) in
             writer.finishWriting {
                 if writer.status == .completed {
                     continuation.resume()

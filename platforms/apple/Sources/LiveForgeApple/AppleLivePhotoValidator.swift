@@ -22,9 +22,9 @@ public struct AppleLivePhotoValidator: Sendable {
 
         let asset = AVURLAsset(url: pairedVideoURL)
         let metadata = try await asset.load(.metadata)
-        guard let movieIdentifier = metadata.first(where: {
+        guard let movieIdentifierItem = metadata.first(where: {
             $0.identifier?.rawValue == Self.movieIdentifier
-        })?.stringValue else {
+        }), let movieIdentifier = try await movieIdentifierItem.load(.stringValue) else {
             throw LivePhotoAppleError.movieIdentifierMissing
         }
 

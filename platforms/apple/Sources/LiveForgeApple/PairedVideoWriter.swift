@@ -140,7 +140,8 @@ public struct PairedVideoWriter: Sendable {
         reader: AVAssetReader,
         writer: AVAssetWriter
     ) async throws {
-        try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation {
+            (continuation: CheckedContinuation<Void, Error>) in
             let queue = DispatchQueue(label: "dev.liveforge.apple.copy.\(UUID().uuidString)")
             var completed = false
 
@@ -171,7 +172,8 @@ public struct PairedVideoWriter: Sendable {
     }
 
     private func finish(_ writer: AVAssetWriter) async throws {
-        try await withCheckedThrowingContinuation { continuation in
+        try await withCheckedThrowingContinuation {
+            (continuation: CheckedContinuation<Void, Error>) in
             writer.finishWriting {
                 if writer.status == .completed {
                     continuation.resume()
