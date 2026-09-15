@@ -49,7 +49,7 @@ See [Architecture](docs/architecture.md), [Live Photo format](docs/live-photo-fo
 
 Requirements:
 
-- Rust 1.78 or newer
+- Rust 1.85 or newer
 - FFmpeg/`ffprobe` available on `PATH` for media analysis
 
 ```bash
