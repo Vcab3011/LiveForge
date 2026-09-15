@@ -34,7 +34,12 @@ pub struct ValidationReport {
 #[must_use]
 pub fn validate_basic_pair(photo: &Path, motion: &Path) -> ValidationReport {
     let mut issues = Vec::new();
-    check_resource(photo, &["heic", "heif", "jpg", "jpeg"], "photo", &mut issues);
+    check_resource(
+        photo,
+        &["heic", "heif", "jpg", "jpeg"],
+        "photo",
+        &mut issues,
+    );
     check_resource(motion, &["mov"], "motion", &mut issues);
 
     issues.push(ValidationIssue {
@@ -50,7 +55,12 @@ pub fn validate_basic_pair(photo: &Path, motion: &Path) -> ValidationReport {
     }
 }
 
-fn check_resource(path: &Path, extensions: &[&str], label: &str, issues: &mut Vec<ValidationIssue>) {
+fn check_resource(
+    path: &Path,
+    extensions: &[&str],
+    label: &str,
+    issues: &mut Vec<ValidationIssue>,
+) {
     if !path.is_file() {
         issues.push(ValidationIssue {
             severity: Severity::Error,

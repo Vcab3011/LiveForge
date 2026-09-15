@@ -1,6 +1,4 @@
-use crate::{
-    ConversionOptions, ConversionPlan, MediaInfo, ProcessingStrategy, QualityMode,
-};
+use crate::{ConversionOptions, ConversionPlan, MediaInfo, ProcessingStrategy, QualityMode};
 use thiserror::Error;
 
 #[derive(Debug, Error, PartialEq)]
@@ -65,8 +63,7 @@ pub fn plan_conversion(
 
     if media.hdr_kind() != crate::HdrKind::SdrOrUnknown {
         warnings.push(
-            "HDR was detected, but preservation must be confirmed by the completed pipeline"
-                .into(),
+            "HDR was detected, but preservation must be confirmed by the completed pipeline".into(),
         );
     }
     if strategy == ProcessingStrategy::RemuxCopy {

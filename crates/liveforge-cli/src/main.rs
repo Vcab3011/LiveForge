@@ -4,7 +4,11 @@ use liveforge_core::{plan_conversion, ConversionOptions, QualityMode};
 use std::path::PathBuf;
 
 #[derive(Debug, Parser)]
-#[command(name = "liveforge", version, about = "Quality-first Live Photo tooling")]
+#[command(
+    name = "liveforge",
+    version,
+    about = "Quality-first Live Photo tooling"
+)]
 struct Cli {
     #[command(subcommand)]
     command: Commands,
@@ -13,9 +17,7 @@ struct Cli {
 #[derive(Debug, Subcommand)]
 enum Commands {
     /// Inspect source media with ffprobe.
-    Analyze {
-        input: PathBuf,
-    },
+    Analyze { input: PathBuf },
     /// Produce a conversion plan without modifying media.
     Plan {
         input: PathBuf,
@@ -29,10 +31,7 @@ enum Commands {
         preserve_audio: bool,
     },
     /// Perform basic checks on a generated resource pair.
-    Verify {
-        photo: PathBuf,
-        motion: PathBuf,
-    },
+    Verify { photo: PathBuf, motion: PathBuf },
 }
 
 #[derive(Debug, Clone, Copy, ValueEnum)]
