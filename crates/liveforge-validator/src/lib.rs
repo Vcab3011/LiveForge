@@ -91,9 +91,9 @@ pub fn validate_structural_snapshot(snapshot: &StructuralMetadataSnapshot) -> Va
     ) {
         (Some(time), Some(duration)) => {
             !time.is_finite()
-            || !duration.is_finite()
-            || duration <= 0.0
-            || !(0.0..=duration).contains(&time)
+                || !duration.is_finite()
+                || duration <= 0.0
+                || !(0.0..=duration).contains(&time)
         }
         _ => false,
     };

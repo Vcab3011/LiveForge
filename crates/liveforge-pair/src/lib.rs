@@ -176,8 +176,11 @@ fn ensure_nonempty(path: &Path) -> Result<(), PairBuildError> {
     let metadata = fs::metadata(path)?;
     if metadata.len() == 0 {
         return Err(PairBuildError::Writer(
-            io::Error::other(format!("writer created an empty resource: {}", path.display()))
-                .into(),
+            io::Error::other(format!(
+                "writer created an empty resource: {}",
+                path.display()
+            ))
+            .into(),
         ));
     }
     Ok(())
@@ -256,10 +259,7 @@ mod tests {
         let source = temporary.path().join("source.mov");
         fs::write(&source, b"video").expect("source fixture");
         let output = temporary.path().join("output");
-        let builder = PairBuilder::new(
-            RecordingBackend { fail_motion: false },
-            IdentifierVerifier,
-        );
+        let builder = PairBuilder::new(RecordingBackend { fail_motion: false }, IdentifierVerifier);
 
         let resources = builder
             .build(request(&source, &output))
@@ -280,19 +280,11 @@ mod tests {
         let source = temporary.path().join("source.mov");
         fs::write(&source, b"video").expect("source fixture");
         let output = temporary.path().join("output");
-        let builder = PairBuilder::new(
-            RecordingBackend { fail_motion: true },
-            IdentifierVerifier,
-        );
+        let builder = PairBuilder::new(RecordingBackend { fail_motion: true }, IdentifierVerifier);
 
         assert!(builder.build(request(&source, &output)).is_err());
         assert!(!output.join("IMG_0001").exists());
-        assert_eq!(
-            fs::read_dir(output)
-                .expect("output directory")
-                .count(),
-            0
-        );
+        assert_eq!(fs::read_dir(output).expect("output directory").count(), 0);
     }
 
     #[test]
@@ -302,10 +294,7 @@ mod tests {
         fs::write(&source, b"video").expect("source fixture");
         let output = temporary.path().join("output");
         fs::create_dir_all(output.join("IMG_0001")).expect("existing output");
-        let builder = PairBuilder::new(
-            RecordingBackend { fail_motion: false },
-            IdentifierVerifier,
-        );
+        let builder = PairBuilder::new(RecordingBackend { fail_motion: false }, IdentifierVerifier);
 
         let error = builder
             .build(request(&source, &output))
