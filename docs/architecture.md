@@ -11,6 +11,7 @@ LiveForge converts a source video into an Apple-compatible still-image and paire
 | `liveforge-core` | Domain types, option validation, conversion planning | Process execution or Apple APIs |
 | `liveforge-media` | Probe and eventually process media through replaceable backends | Product policy |
 | `liveforge-metadata` | Shared identifiers and metadata-writing contracts | UI or Photos import |
+| `liveforge-pair` | Transactional pair orchestration and publication | Container-specific metadata encoding |
 | `liveforge-validator` | Layered validation with evidence | Mutation of outputs |
 | `liveforge-cli` | User input, orchestration, machine-readable output | Codec/format rules |
 
@@ -37,6 +38,7 @@ Platform-specific code must sit behind explicit interfaces. The core format mode
 ## Processing invariants
 
 - Both resources use one generated asset identifier.
+- A pair is published as one directory only after both resources pass verification.
 - Key time is inside the selected clip.
 - Passthrough means no video decode/encode; container remuxing may still occur.
 - Any required transcode happens once.

@@ -7,6 +7,7 @@
 - [x] `ffprobe` analyzer
 - [x] Deterministic conversion planner
 - [x] Metadata contracts and layered validation model
+- [x] Transactional resource-pair builder
 - [x] CLI commands for analyze, plan, and basic verify
 
 ## Phase 1 — First valid pair

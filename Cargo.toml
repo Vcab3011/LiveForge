@@ -3,6 +3,7 @@ members = [
     "crates/liveforge-core",
     "crates/liveforge-media",
     "crates/liveforge-metadata",
+    "crates/liveforge-pair",
     "crates/liveforge-validator",
     "crates/liveforge-cli",
 ]
